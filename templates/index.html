@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+
+
+
+
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides" style="height: 465px;">
+        <ul class="slides-container">
+            <li class="text-center">
+                <img src="{% static 'images/' %}Books_3_1.webp" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Books Zoon</strong></h1>
+                            <p class="m-b-40">See the world in different engle.</p>
+                            <p><a class="btn hvr-hover" >Buy and sell</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'images/' %}Books_3_2.webp" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Books Zoon</strong></h1>
+                            <p class="m-b-40">See the world in different engle.</p>
+                            <p><a class="btn hvr-hover" >Buy and sell</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'images/' %}Books_3_3.webp" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> Books Zoon</strong></h1>
+                            <p class="m-b-40">See the world in different engle.</p>
+                            <p><a class="btn hvr-hover" >Buy and sell</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- End Slider -->
+
+
+	
+
+
+    <!-- Start Products  -->
+
+    <!-- End Products  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+<h2 style="color:green;">Book post are
+{% if cetagory_type %}
+    ({{cetagory_type}})
+    {% else %}
+    (All)
+    {% endif %}
+</h2>
+
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="product-categorie-box">
+                            <div class="tab-content">
+
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        {% for i in get_sale_book %}
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+
+                                            <div class="products-single fix">
+
+                                                <div class="box-img-hover">
+
+                                                    <img src="{{i.store_post_book_image}}" class="img-fluid" alt="Image" style="height: 195px;">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li onclick="add_wishlist_func('{{i.id}}')"><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist" data-original-title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="{% url 'post_details' i.id %}">See Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>{{i.store_post_book_name}}</h4>
+                                                    <h5> ${{i.store_post_book_price}}</h5>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        {% endfor %}
+
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            {% for i in get_sale_book %}
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <img src="{{i.store_post_book_image}}" class="img-fluid" alt="Image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8" >
+                                                <div class="why-text full-width">
+
+                                                    <h4>{{i.store_post_book_name}}</h4>
+
+                                                    <h5>  ${{i.store_post_book_price}}</h5><br>
+                                                    <a class="btn hvr-hover" href="{% url 'post_details' i.id %}">See Details</a>
+
+                                                </div>
+                                            </div>
+                                             {% endfor %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+				<div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="{% url 'search_things_url' %}" method="POST">{% csrf_token %}
+                                <input class="form-control" name="search_things" placeholder="Search here..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Categories</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+
+                                <a href="{% url 'index' %}" class="list-group-item list-group-item-action"> All  <small class="text-muted">({{get_user_all}}) </small></a>
+                                <a href="{% url 'spacific_category' 'Arts & Music' %}" class="list-group-item list-group-item-action"> Arts & Music  <small class="text-muted">({{get_user_Arts_and_Music}}) </small></a>
+                                <a href="{% url 'spacific_category' 'Biographies' %}" class="list-group-item list-group-item-action"> Biographies <small class="text-muted">({{get_user_Biographies}})</small></a>
+                                <a href="{% url 'spacific_category' 'Business' %}" class="list-group-item list-group-item-action"> Business <small class="text-muted">({{get_user_Business}})</small></a>
+                                <a href="{% url 'spacific_category' 'Comics' %}" class="list-group-item list-group-item-action"> Comics <small class="text-muted">({{get_user_Comics}})</small></a>
+                                <a href="{% url 'spacific_category' 'Computers & Tech' %}" class="list-group-item list-group-item-action"> Computers & Tech <small class="text-muted">({{get_user_Computers_and_Tech}})</small></a>
+                                <a href="{% url 'spacific_category' 'Cooking' %}" class="list-group-item list-group-item-action"> Cooking <small class="text-muted">({{get_user_Cooking}})</small></a>
+                                <a href="{% url 'spacific_category' 'Edu & Reference' %}" class="list-group-item list-group-item-action"> Edu & Reference <small class="text-muted">({{get_user_Edu_and_Reference}})</small></a>
+                                <a href="{% url 'spacific_category' 'Entertainment' %}" class="list-group-item list-group-item-action"> Entertainment <small class="text-muted">({{get_user_Entertainment}})</small></a>
+                                <a href="{% url 'spacific_category' 'Special Editions' %}" class="list-group-item list-group-item-action"> Special Editions <small class="text-muted">({{get_user_Special_Editions}})</small></a>
+                                <a href="{% url 'spacific_category' 'Health & Fitness' %}" class="list-group-item list-group-item-action"> Health & Fitness <small class="text-muted">({{get_user_Health_and_Fitness}})</small></a>
+                                <a href="{% url 'spacific_category' 'History' %}" class="list-group-item list-group-item-action"> History <small class="text-muted">({{get_user_History}})</small></a>
+                                <a href="{% url 'spacific_category' 'Horror' %}" class="list-group-item list-group-item-action"> Horror <small class="text-muted">({{get_user_Horror}})</small></a>
+                                <a href="{% url 'spacific_category' 'Medical' %}" class="list-group-item list-group-item-action"> Medical <small class="text-muted">({{get_user_Medical}})</small></a>
+                                <a href="{% url 'spacific_category' 'Religion' %}" class="list-group-item list-group-item-action"> Religion <small class="text-muted">({{get_user_Religion}})</small></a>
+                                <a href="{% url 'spacific_category' 'Romance' %}" class="list-group-item list-group-item-action"> Romance <small class="text-muted">({{get_user_Romance}})</small></a>
+                                <a href="{% url 'spacific_category' 'Other' %}" class="list-group-item list-group-item-action"> Other <small class="text-muted">({{get_user_Other}})</small></a>
+                            </div>
+                        </div>
+                        <hr style="border-top: 4px solid rgb(12 12 12 / 98%);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Wsihlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="show_message_wish">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="user_info" value="{{request.user}}">
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+
+
+<script>
+    function add_wishlist_func(product_id){
+        console.log(product_id)
+        var usr_info = document.getElementById('user_info').value;
+        console.log(usr_info)
+        if(usr_info == 'AnonymousUser'){
+            var text_modal = `You Have To login First For Adding Any Product to your Wishlist !`;
+            document.getElementById('show_message_wish').innerHTML = text_modal;
+            $('#exampleModal').modal('show')
+        }
+        else{
+            var text_modal = `<span style="color:green;">Your Product is Added to Your Wishlist</span>`;
+            document.getElementById('show_message_wish').innerHTML = text_modal;
+            $('#exampleModal').modal('show')
+
+            $.ajax({
+                url : '{% url 'save_wishlist' %}',
+                type : 'POST',
+                data : {product_id:product_id}
+            })
+
+        }
+    }
+</script>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

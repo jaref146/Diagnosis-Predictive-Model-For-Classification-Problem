@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <div class="container">
+            <div class="row new-account-login">
+                <form action="{% url 'POST_FOR_SALE22' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+<!--                            <iframe id="blah" src="#" alt="your image" height="300" width="450" style="padding: 13px; margin-top: 99px;" title="description"></iframe>-->
+                        <img id="blah" src="{% static 'images/' %}1024px-No_image_available.svg.png" class="img-fluid" alt="Image" style="height: 350px;width: 300px;">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type='file' name="post_book_image" onchange="readURL(this);" style="width: 108px;" class="btn hvr-hover"/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control"  name="post_book_name" placeholder="Book Name" required="" >
+                        </div>
+                         <div class="form-group col-md-12">
+<!--                        <div class="btn-group bootstrap-select show-tick form-control">-->
+                            <select name="post_books_category" id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" tabindex="-98" required="">
+                                <option data-display="Select">Select Books Category</option>
+                                <option value="Arts & Music">Arts & Music</option>
+                                <option value="Biographies">Biographies</option>
+                                <option value="Business">Business</option>
+                                <option value="Comics">Comics</option>
+                                <option value="Computers & Tech">Computers & Tech</option>
+                                <option value="Cooking">Cooking</option>
+                                <option value="Edu & Reference">Edu & Reference</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Special Editions">Special Editions</option>
+                                <option value="Health & Fitness">Health & Fitness</option>
+                                <option value="History">History</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Religion">Religion</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="number" class="form-control"  name="post_book_price" placeholder="Book price" required="" >
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="email" class="form-control"  name="post_book_user_email" placeholder="Your email" required="" >
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control"  name="post_book_user_number" placeholder="Mobile Number" required="" >
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control"  name="post_book_subject" placeholder="Subject Name" required="" >
+                        </div>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control"  name="post_book_description" placeholder="Description" rows="4" data-error="Write your message" required=""></textarea>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn hvr-hover" style="color:white;">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <div class="col-lg-12">
+                    <h2>Your post list are below</h2>
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Images</th>
+                                    <th>Product Name</th>
+                                    <th>Price </th>
+
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% if get_info_of_user_post %}
+                            {% for i in get_info_of_user_post %}
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+									<img class="img-fluid" src="{{i.store_post_book_image}}" alt="">
+								</a>
+                                    </td>
+                                    <td class="name-pr">
+
+									{{i.store_post_book_name}}
+
+                                    </td>
+
+                                    <td class="quantity-box">{{i.store_post_book_price}}</td>
+
+								</a>
+                                    </td>
+                                    <td class="add-pr">
+                                        <a class="btn hvr-hover" href="{% url 'Remove_Post' i.id %}">Remove Post</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            {% endif %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    </div>
+
+
+ </div>
+    </div>
+
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(300)
+                    .height(350);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+{% endblock %}

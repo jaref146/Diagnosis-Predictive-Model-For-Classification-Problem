@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="cart-box-main">
+        <div class="container">
+<div class="row">
+				<div class="col-lg-6">
+                    <div class="banner-frame"><div id="map" style="height: 460px; width: 460px;" ></div>
+<!--                    <div class="banner-frame"> <img class="img-fluid" src="images/about-img.jpg" alt="">-->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="noo-sh-title-top">We are <span>BookSZoon</span></h2>
+                    <p>"we are developers of Django, we want make a plate form where we can sheare books."</p>
+                    <p>Books store knowledge about the world and beyond it and if I start describing how vast and advance the imagination of human mind is then we would probably be stuck here all night. Books have always been very loyal companions as they improve our wisdom and keep us company without ever asking for anything in return.</p>
+                </div>
+            </div>
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+<script>
+
+    // In this example, we center the map, and add a marker, using a LatLng object
+// literal instead of a google.maps.LatLng object. LatLng object literals are
+// a convenient way to add a LatLng coordinate and, in most cases, can be used
+// in place of a google.maps.LatLng object.
+let map;
+
+function initMap() {
+  const mapOptions = {
+    zoom: 10,
+    center: { lat: 39.941787, lng: -75.026219 },
+  };
+
+  map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+  const marker = new google.maps.Marker({
+    // The below line is equivalent to writing:
+    // position: new google.maps.LatLng(-34.397, 150.644)
+    position: { lat: 39.941787, lng: -75.026219 },
+    map: map,
+  });
+  // You can use a LatLng literal in place of a google.maps.LatLng object when
+  // creating the Marker object. Once the Marker object is instantiated, its
+  // position will be available as a google.maps.LatLng object. In this case,
+  // we retrieve the marker's position using the
+  // google.maps.LatLng.getPosition() method.
+  const infowindow = new google.maps.InfoWindow({
+    content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+  });
+
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.open(map, marker);
+  });
+}
+</script>
+
+
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtCWZZiKigXGJ6ahLIuEtUXtkLIK5c8P0&callback=initMap&libraries=places&v=weekly&channel=2"
+      async
+    ></script>
+
+
+
+{% endblock %}
